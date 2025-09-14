@@ -1,4 +1,4 @@
-# Khaled Ali Khan - Portfolio
+# Khaled Alikhan - Portfolio
 
 A modern, responsive portfolio website showcasing my projects and skills as a Computer Science student at McMaster University.
 
@@ -53,15 +53,6 @@ Portfolio/
 - Functional contact form
 - Social media links
 
-## 🚀 Deployment
-
-This portfolio is designed to be deployed on GitHub Pages:
-
-1. **Create Repository**: Create a new repository named `khalamander.github.io`
-2. **Upload Files**: Upload all files to the repository
-3. **Enable GitHub Pages**: Go to repository settings > Pages > Source: Deploy from a branch > main
-4. **Access**: Your portfolio will be available at `https://khalamander.github.io`
-
 ## 📱 Responsive Design
 
 The portfolio is fully responsive and optimized for:
@@ -69,24 +60,7 @@ The portfolio is fully responsive and optimized for:
 - Tablet (768px - 1199px)
 - Mobile (320px - 767px)
 
-## 🎯 Key Projects Featured
 
-1. **Football Analytics Engine** - AI-powered soccer analytics
-2. **Gridiron AI** - NFL player performance forecasting
-3. **FairLens** - Algorithmic bias detection framework
-4. **Streamify Analytics Pipeline** - Real-time e-commerce analytics
-5. **Emergent Particle Life** - Interactive particle simulation
-6. **CodeGraphContext** - AI code context server
-
-## 🔧 Customization
-
-To customize this portfolio for your own use:
-
-1. Update personal information in `index.html`
-2. Replace project information with your own projects
-3. Modify colors and styling in `styles.css`
-4. Update contact information and social links
-5. Add your own GitHub repository links
 
 ## 📄 License
 
