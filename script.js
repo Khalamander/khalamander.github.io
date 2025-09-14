@@ -208,36 +208,28 @@ if (contactForm) {
         submitBtn.disabled = true;
         
         try {
-            // Determine backend URL based on environment
-            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-            const backendUrl = isLocal 
-                ? 'http://localhost:3000/api/contact'
-                : 'https://portfolio-backend-production-930d.up.railway.app/api/contact';
+            // Initialize EmailJS
+            emailjs.init('6jjjiuvEuTVXVp8qp');
             
-            // Send to backend
-            const response = await fetch(backendUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    message: message
-                })
-            });
+            // Send email using EmailJS
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                message: message,
+                date: new Date().toLocaleString()
+            };
             
-            const data = await response.json();
+            const response = await emailjs.send('service_5vvh9tq', 'template_y9h2y1k', templateParams);
             
-            if (data.success) {
+            if (response.status === 200) {
                 showMessage('Thank you for your message! I\'ll get back to you soon.', 'success');
                 this.reset();
             } else {
-                showMessage(data.message || 'Failed to send message. Please try again.', 'error');
+                showMessage('Failed to send message. Please try again.', 'error');
             }
             
         } catch (error) {
-            console.error('Error:', error);
+            console.error('EmailJS Error:', error);
             showMessage('Failed to send message. Please check your connection and try again.', 'error');
         } finally {
             // Reset button
