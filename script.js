@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (iframe) {
         // Ensure iframe loads properly
         iframe.addEventListener('load', () => {
-            console.log('Particle demo loaded successfully');
+            // Particle demo loaded successfully
         });
         
         // Handle iframe load errors
@@ -1865,10 +1865,7 @@ class AnvilSimulation {
             }
             
             // Debug: Log world state before update (only occasionally)
-            if (Math.random() < 0.01) { // Only log 1% of the time
-                console.log('World bodies count:', this.world.bodies.length);
-                console.log('World constraints count:', this.world.constraints.length);
-            }
+            // Removed excessive logging for production
             
             // Check for any bodies with invalid geometry
             for (let body of this.world.bodies) {
@@ -1991,7 +1988,7 @@ class AnvilSimulation {
                 Matter.Body.setAngularVelocity(this.hammerHandle, 0);
                 Matter.Body.setAngularVelocity(this.hammerHead, 0);
                 
-                console.log('Hammer frozen');
+                // Hammer frozen
             }
         }
     }
