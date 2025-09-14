@@ -1,3 +1,6 @@
+# Backend directory (has its own repository)
+backend/
+
 # Dependencies
 node_modules/
 npm-debug.log*
