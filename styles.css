@@ -1268,5 +1268,102 @@ html {
     color: var(--text-primary);
     font-size: 14px;
     line-height: 1.5;
+    margin: 0 0 20px 0;
+}
+
+.hammer-controls {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.controls-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.controls-header h4 {
+    color: var(--text-primary);
+    font-size: 16px;
     margin: 0;
+    font-weight: 600;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 10px;
+}
+
+.control-group label {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 120px;
+}
+
+.control-group input[type="color"] {
+    width: 40px;
+    height: 30px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    background: none;
+}
+
+.control-group input[type="range"] {
+    flex: 1;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--bg-primary);
+}
+
+.control-group input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--bg-primary);
+}
+
+.control-group span {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 60px;
+    text-align: right;
+}
+
+.reset-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.reset-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
 }

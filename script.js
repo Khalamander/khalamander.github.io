@@ -689,37 +689,17 @@ class AnvilSimulation {
         this.hammerFrozen = false; // Start unfrozen for immediate interaction
         this.lastInteractionTime = Date.now(); // Start with current time
         this.freezeDelay = 2000; // Freeze after 2 seconds of no interaction
+        
+        // Customization properties
+        this.customSparkColor = '#ff6b35';
+        this.customFadeTime = 1500;
+        this.customTrailLength = 20;
     }
     
     setupEventListeners() {
         // Canvas setup complete
         
-        this.canvas.addEventListener('click', (e) => {
-            const rect = this.canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            // Check if click is near the hammer (larger click area)
-            const hammerPos = this.hammerHandle.position;
-            const distance = Math.sqrt(
-                Math.pow(x - hammerPos.x, 2) + Math.pow(y - hammerPos.y, 2)
-            );
-            
-            // Larger click radius for easier interaction
-            const clickRadius = 80;
-            
-            if (distance < clickRadius || this.hammerFrozen) {
-                // Unfreeze hammer when clicked near it or if frozen
-                this.hammerFrozen = false;
-                Matter.Body.setStatic(this.hammerHandle, false);
-                Matter.Body.setStatic(this.hammerHead, false);
-                this.lastInteractionTime = Date.now();
-                this.updateStatusText('Hammer Ready - Drag to Swing');
-                
-                // Visual feedback - briefly highlight the hammer
-                this.highlightHammer();
-            }
-        });
+        // Remove click event - mousedown handles everything
         
         // Update mouse position for Matter.js
         this.canvas.addEventListener('mousemove', (e) => {
@@ -732,21 +712,10 @@ class AnvilSimulation {
                 this.mouse.position.y = y;
             }
             
-            // Enhanced dragging for better hammer control
-            if (this.isDragging && this.dragBody) {
-                this.lastInteractionTime = Date.now();
-                
-                // Apply force to move hammer toward mouse
-                const force = {
-                    x: (x - this.dragBody.position.x) * 0.01,
-                    y: (y - this.dragBody.position.y) * 0.01
-                };
-                
-                Matter.Body.applyForce(this.dragBody, this.dragBody.position, force);
-            }
+            // Removed dragging logic to prevent jittering
         });
         
-        // Enhanced mouse interaction for better hammer control
+        // Simple mouse interaction - just unfreeze and highlight
         this.canvas.addEventListener('mousedown', (e) => {
             const rect = this.canvas.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -759,10 +728,6 @@ class AnvilSimulation {
             );
             
             if (distance < 80) {
-                this.isDragging = true;
-                this.dragBody = this.hammerHandle;
-                this.lastInteractionTime = Date.now();
-                
                 // Unfreeze if frozen
                 if (this.hammerFrozen) {
                     this.hammerFrozen = false;
@@ -770,15 +735,16 @@ class AnvilSimulation {
                     Matter.Body.setStatic(this.hammerHead, false);
                 }
                 
-                this.updateStatusText('Dragging Hammer - Move to Swing');
+                this.lastInteractionTime = Date.now();
+                this.updateStatusText('Hammer Ready - Click and Drag to Swing');
+                
+                // Visual feedback
+                this.highlightHammer();
             }
         });
         
         this.canvas.addEventListener('mouseup', (e) => {
-            this.isDragging = false;
-            this.dragBody = null;
             this.lastInteractionTime = Date.now();
-            this.updateStatusText('Hammer Released');
         });
         
         this.canvas.addEventListener('mouseleave', (e) => {
@@ -984,8 +950,8 @@ class AnvilSimulation {
                 vx: Math.cos(angle) * sparkSpeed * 0.4,
                 vy: -Math.random() * sparkSpeed * 0.6,
                 life: 1.0,
-                maxLife: 0.6 + Math.random() * 0.8, // 0.6-1.4 seconds
-                decay: 0.025 + Math.random() * 0.015, // Faster fade: 0.025-0.04
+                maxLife: (this.customFadeTime || 1500) / 1000 + Math.random() * 0.5, // Custom fade time + random
+                decay: (0.025 + Math.random() * 0.015) * (1500 / (this.customFadeTime || 1500)), // Adjusted for custom fade time
                 size: 1 + Math.random() * 4, // 1-5 pixels
                 baseSize: 1 + Math.random() * 4,
                 color: this.getSparkColor(),
@@ -995,7 +961,7 @@ class AnvilSimulation {
                 gravity: 0.2 + Math.random() * 0.3,
                 airResistance: 0.985 + Math.random() * 0.01,
                 trail: [], // Array to store trail positions
-                maxTrailLength: 8,
+                maxTrailLength: this.customTrailLength || 8,
                 isDisintegrating: false,
                 binaryParticles: [] // For Matrix-style disintegration
             });
@@ -1003,6 +969,11 @@ class AnvilSimulation {
     }
     
     getSparkColor() {
+        // Use custom color if set, otherwise random from palette
+        if (this.customSparkColor) {
+            return this.customSparkColor;
+        }
+        
         const colors = [
             '#FFD700', // Gold
             '#FFA500', // Orange
@@ -1136,8 +1107,9 @@ class AnvilSimulation {
             life: 1.0, // Full life when converting
             decay: 0.003, // Moderate decay
             size: spark.size * 1.5, // Bigger sparks
+            color: spark.color || this.customSparkColor || '#FFD700', // Use spark color or custom color
             trail: globalTrail, // Use converted trail
-            maxTrailLength: 10, // Reduced trail length for performance
+            maxTrailLength: this.customTrailLength || 10, // Use custom trail length
             isDisintegrating: false,
             binaryParticles: [],
             zIndex: 1000, // High z-index to appear above everything
@@ -2093,6 +2065,14 @@ class AnvilSimulation {
         this.isDragging = false;
         this.dragBody = null;
         
+        // Unfreeze hammer if it's frozen
+        this.hammerFrozen = false;
+        this.lastInteractionTime = Date.now();
+        
+        // Make sure bodies are not static before resetting
+        Matter.Body.setStatic(this.hammerHandle, false);
+        Matter.Body.setStatic(this.hammerHead, false);
+        
         // Reset hammer position
         Matter.Body.setPosition(this.hammerHandle, { x: this.width / 2, y: this.height / 2 - 30 });
         Matter.Body.setPosition(this.hammerHead, { x: this.width / 2 + 60, y: this.height / 2 - 30 });
@@ -2101,8 +2081,16 @@ class AnvilSimulation {
         Matter.Body.setAngularVelocity(this.hammerHandle, 0);
         Matter.Body.setAngularVelocity(this.hammerHead, 0);
         
+        // Reset angle to 0
+        Matter.Body.setAngle(this.hammerHandle, 0);
+        Matter.Body.setAngle(this.hammerHead, 0);
+        
         // Clear sparks
         this.sparks = [];
+        this.globalSparks = [];
+        
+        // Force engine update to apply changes
+        Matter.Engine.update(this.engine, 16);
     }
     
     resetSimulation() {
@@ -2200,6 +2188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (canvas) {
             console.log('Canvas found, initializing simulation');
             anvilSim = new AnvilSimulation(canvas);
+            setupHammerControls();
         } else {
             console.error('Canvas not found!');
         }
@@ -2207,6 +2196,57 @@ document.addEventListener('DOMContentLoaded', () => {
     
     initSimulation();
 });
+
+// Setup hammer customization controls
+function setupHammerControls() {
+    const sparkColorInput = document.getElementById('sparkColor');
+    const fadeTimeInput = document.getElementById('fadeTime');
+    const fadeTimeValue = document.getElementById('fadeTimeValue');
+    const trailLengthInput = document.getElementById('trailLength');
+    const trailLengthValue = document.getElementById('trailLengthValue');
+    const resetBtn = document.getElementById('resetDemo');
+    
+    if (!sparkColorInput || !fadeTimeInput || !trailLengthInput || !resetBtn) {
+        return; // Controls not found, skip setup
+    }
+    
+    // Update fade time display
+    fadeTimeInput.addEventListener('input', (e) => {
+        fadeTimeValue.textContent = e.target.value + 'ms';
+        if (anvilSim) {
+            anvilSim.customFadeTime = parseInt(e.target.value);
+        }
+    });
+    
+    // Update trail length display
+    trailLengthInput.addEventListener('input', (e) => {
+        trailLengthValue.textContent = e.target.value;
+        if (anvilSim) {
+            anvilSim.customTrailLength = parseInt(e.target.value);
+        }
+    });
+    
+    // Update spark color
+    sparkColorInput.addEventListener('change', (e) => {
+        if (anvilSim) {
+            anvilSim.customSparkColor = e.target.value;
+        }
+    });
+    
+    // Reset demo
+    resetBtn.addEventListener('click', () => {
+        if (anvilSim) {
+            anvilSim.reset();
+        }
+        
+        // Reset controls to default values
+        sparkColorInput.value = '#ff6b35';
+        fadeTimeInput.value = '1500';
+        fadeTimeValue.textContent = '1500ms';
+        trailLengthInput.value = '20';
+        trailLengthValue.textContent = '20';
+    });
+}
 
 // Reset function for the button
 function resetAnvil() {

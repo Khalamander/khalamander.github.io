@@ -335,6 +335,28 @@
                     <!-- Hammer Demo Description -->
                     <div class="hammer-description-box">
                         <p>more projects to come - in the mean time enjoy this quick thing i threw together (very buggy), try it swing the hammer at the anvil by holding left click on the handle and moving your mouse.</p>
+                        
+                        <!-- Customization Controls -->
+                        <div class="hammer-controls">
+                            <div class="controls-header">
+                                <h4>Customize the Demo:</h4>
+                                <button id="resetDemo" class="reset-btn">Reset Demo</button>
+                            </div>
+                            <div class="control-group">
+                                <label for="sparkColor">Spark Color:</label>
+                                <input type="color" id="sparkColor" value="#ff6b35" title="Choose spark color">
+                            </div>
+                            <div class="control-group">
+                                <label for="fadeTime">Fade Time (ms):</label>
+                                <input type="range" id="fadeTime" min="500" max="3000" value="1500" step="100">
+                                <span id="fadeTimeValue">1500ms</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="trailLength">Trail Length:</label>
+                                <input type="range" id="trailLength" min="5" max="50" value="20" step="1">
+                                <span id="trailLengthValue">20</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
