@@ -695,13 +695,29 @@ class AnvilSimulation {
         // Canvas setup complete
         
         this.canvas.addEventListener('click', (e) => {
-            // Unfreeze hammer when clicked
-            if (this.hammerFrozen) {
+            const rect = this.canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Check if click is near the hammer (larger click area)
+            const hammerPos = this.hammerHandle.position;
+            const distance = Math.sqrt(
+                Math.pow(x - hammerPos.x, 2) + Math.pow(y - hammerPos.y, 2)
+            );
+            
+            // Larger click radius for easier interaction
+            const clickRadius = 80;
+            
+            if (distance < clickRadius || this.hammerFrozen) {
+                // Unfreeze hammer when clicked near it or if frozen
                 this.hammerFrozen = false;
                 Matter.Body.setStatic(this.hammerHandle, false);
                 Matter.Body.setStatic(this.hammerHead, false);
                 this.lastInteractionTime = Date.now();
                 this.updateStatusText('Hammer Ready - Drag to Swing');
+                
+                // Visual feedback - briefly highlight the hammer
+                this.highlightHammer();
             }
         });
         
@@ -715,9 +731,55 @@ class AnvilSimulation {
                 this.mouse.position.x = x;
                 this.mouse.position.y = y;
             }
+            
+            // Enhanced dragging for better hammer control
+            if (this.isDragging && this.dragBody) {
+                this.lastInteractionTime = Date.now();
+                
+                // Apply force to move hammer toward mouse
+                const force = {
+                    x: (x - this.dragBody.position.x) * 0.01,
+                    y: (y - this.dragBody.position.y) * 0.01
+                };
+                
+                Matter.Body.applyForce(this.dragBody, this.dragBody.position, force);
+            }
         });
         
-        // Matter.js built-in mouse constraint handles all interaction automatically
+        // Enhanced mouse interaction for better hammer control
+        this.canvas.addEventListener('mousedown', (e) => {
+            const rect = this.canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Check if click is near the hammer
+            const hammerPos = this.hammerHandle.position;
+            const distance = Math.sqrt(
+                Math.pow(x - hammerPos.x, 2) + Math.pow(y - hammerPos.y, 2)
+            );
+            
+            if (distance < 80) {
+                this.isDragging = true;
+                this.dragBody = this.hammerHandle;
+                this.lastInteractionTime = Date.now();
+                
+                // Unfreeze if frozen
+                if (this.hammerFrozen) {
+                    this.hammerFrozen = false;
+                    Matter.Body.setStatic(this.hammerHandle, false);
+                    Matter.Body.setStatic(this.hammerHead, false);
+                }
+                
+                this.updateStatusText('Dragging Hammer - Move to Swing');
+            }
+        });
+        
+        this.canvas.addEventListener('mouseup', (e) => {
+            this.isDragging = false;
+            this.dragBody = null;
+            this.lastInteractionTime = Date.now();
+            this.updateStatusText('Hammer Released');
+        });
         
         this.canvas.addEventListener('mouseleave', (e) => {
             // Clean up and freeze hammer
@@ -1797,6 +1859,24 @@ class AnvilSimulation {
         this.statusTimeout = setTimeout(() => {
             this.statusText = "Hammer Ready";
         }, 2000);
+    }
+    
+    highlightHammer() {
+        // Visual feedback when hammer is clicked
+        if (this.hammerHandle && this.hammerHead) {
+            // Temporarily change hammer color
+            const originalHandleColor = this.hammerHandle.render.fillStyle;
+            const originalHeadColor = this.hammerHead.render.fillStyle;
+            
+            this.hammerHandle.render.fillStyle = '#ff6b35';
+            this.hammerHead.render.fillStyle = '#ff6b35';
+            
+            // Reset after 200ms
+            setTimeout(() => {
+                this.hammerHandle.render.fillStyle = originalHandleColor;
+                this.hammerHead.render.fillStyle = originalHeadColor;
+            }, 200);
+        }
     }
     
     drawStatusText() {
