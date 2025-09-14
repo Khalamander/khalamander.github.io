@@ -2065,7 +2065,7 @@ class AnvilSimulation {
         this.isDragging = false;
         this.dragBody = null;
         
-        // Unfreeze hammer if it's frozen
+        // Force unfreeze hammer
         this.hammerFrozen = false;
         this.lastInteractionTime = Date.now();
         
@@ -2091,6 +2091,9 @@ class AnvilSimulation {
         
         // Force engine update to apply changes
         Matter.Engine.update(this.engine, 16);
+        
+        // Update status text
+        this.updateStatusText('Hammer Reset - Click to Interact');
     }
     
     resetSimulation() {
@@ -2215,6 +2218,9 @@ function setupHammerControls() {
         fadeTimeValue.textContent = e.target.value + 'ms';
         if (anvilSim) {
             anvilSim.customFadeTime = parseInt(e.target.value);
+            // Ensure hammer stays interactive
+            anvilSim.hammerFrozen = false;
+            anvilSim.lastInteractionTime = Date.now();
         }
     });
     
@@ -2223,6 +2229,9 @@ function setupHammerControls() {
         trailLengthValue.textContent = e.target.value;
         if (anvilSim) {
             anvilSim.customTrailLength = parseInt(e.target.value);
+            // Ensure hammer stays interactive
+            anvilSim.hammerFrozen = false;
+            anvilSim.lastInteractionTime = Date.now();
         }
     });
     
@@ -2230,6 +2239,11 @@ function setupHammerControls() {
     sparkColorInput.addEventListener('change', (e) => {
         if (anvilSim) {
             anvilSim.customSparkColor = e.target.value;
+            // Ensure hammer is unfrozen after color change
+            anvilSim.hammerFrozen = false;
+            anvilSim.lastInteractionTime = Date.now();
+            Matter.Body.setStatic(anvilSim.hammerHandle, false);
+            Matter.Body.setStatic(anvilSim.hammerHead, false);
         }
     });
     
