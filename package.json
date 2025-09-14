@@ -1,0 +1,33 @@
+{
+  "name": "khaled-ali-khan-portfolio",
+  "version": "1.0.0",
+  "description": "Modern portfolio website for Khaled Ali Khan - Computer Science Student at McMaster University",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "build": "echo 'No build process needed for static site'",
+    "deploy": "echo 'Deploy to GitHub Pages by pushing to main branch'"
+  },
+  "keywords": [
+    "portfolio",
+    "website",
+    "computer-science",
+    "mcmaster-university",
+    "data-science",
+    "machine-learning",
+    "sports-analytics"
+  ],
+  "author": "Khaled Ali Khan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khalamander/khalamander.github.io.git"
+  },
+  "homepage": "https://khalamander.github.io",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

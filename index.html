@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khaled Alikhan - Portfolio</title>
+    <meta name="description" content="Computer Science Student at McMaster University. Love data, sports, machine learning. Showcasing innovative projects in AI, analytics, and software development.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Khaled Alikhan</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="particles" id="particles"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-line">Hello, I'm</span>
+                    <span class="title-line highlight">Khaled Alikhan</span>
+                    <span class="title-line">Computer Science Student</span>
+                </h1>
+                <p class="hero-description">
+                    Passionate about data, sports analytics, and machine learning. 
+                    Building innovative solutions that bridge the gap between technology and real-world impact.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="particle-demo-container">
+                    <iframe 
+                        id="particleDemo" 
+                        src="particle-demo/index.html" 
+                        width="500" 
+                        height="400"
+                        frameborder="0"
+                        allowtransparency="true">
+                    </iframe>
+                    <div class="demo-info">
+                        <h3>Live Particle Simulation</h3>
+                        <p>Interactive emergent particle life simulation built with React & TypeScript</p>
+                        <p class="demo-note">For the best experience, <a href="particle-demo/index.html" target="_blank" class="demo-link">click here to open in full screen</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Get to know me better</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-card">
+                        <h3>Who I Am</h3>
+                        <p>
+                            I'm a Computer Science student at McMaster University, graduating in 2027. 
+                            My passion lies at the intersection of data science, sports analytics, and machine learning. 
+                            I love creating innovative solutions that solve real-world problems.
+                        </p>
+                    </div>
+                    <div class="about-card">
+                        <h3>What I Do</h3>
+                        <p>
+                            I specialize in building advanced analytics engines, AI-powered forecasting systems, 
+                            and real-time data pipelines. My projects span from sports analytics to algorithmic fairness, 
+                            always with a focus on practical applications and meaningful impact.
+                        </p>
+                    </div>
+                    <div class="about-card">
+                        <h3>My Journey</h3>
+                        <p>
+                            From exploring particle life simulations to building sophisticated NFL performance 
+                            forecasting engines, I'm constantly pushing the boundaries of what's possible with 
+                            technology and data.
+                        </p>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Coding</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Major Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2027</div>
+                        <div class="stat-label">Graduation Year</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Passion for Learning</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Showcasing my best work and innovations</p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Football Analytics Engine -->
+                <div class="project-card" data-category="ai-analytics">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/Khalamander/football-analytics-engine" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-screenshot">
+                            <img src="screenshots/football-analytics.png" alt="Football Analytics Engine Screenshot" class="screenshot-img">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">AI</span>
+                            <span class="tag">Analytics</span>
+                        </div>
+                        <h3 class="project-title">Football Analytics Engine</h3>
+                        <p class="project-description">
+                            Advanced Football (Soccer) Analytics Engine with AI-powered insights and sophisticated visualizations. 
+                            Features real-time data processing and predictive modeling.
+                        </p>
+                        <div class="project-features">
+                            <span class="feature">AI-Powered Insights</span>
+                            <span class="feature">Real-time Analytics</span>
+                            <span class="feature">Advanced Visualizations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gridiron AI -->
+                <div class="project-card" data-category="ai-analytics">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/Khalamander/gridiron-ai" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-screenshot">
+                            <img src="screenshots/gridiron-ai.png" alt="Gridiron AI Screenshot" class="screenshot-img">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Streamlit</span>
+                            <span class="tag">XGBoost</span>
+                            <span class="tag">Dagster</span>
+                        </div>
+                        <h3 class="project-title">Gridiron AI</h3>
+                        <p class="project-description">
+                            Advanced NFL player performance forecasting engine with real-time data integration, 
+                            multi-position analytics, and interactive web dashboard.
+                        </p>
+                        <div class="project-features">
+                            <span class="feature">Performance Forecasting</span>
+                            <span class="feature">Real-time Data</span>
+                            <span class="feature">Interactive Dashboard</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FairLens -->
+                <div class="project-card" data-category="ai-fairness">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/Khalamander/FairLens" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Fairness</span>
+                            <span class="tag">Bias Detection</span>
+                        </div>
+                        <h3 class="project-title">FairLens</h3>
+                        <p class="project-description">
+                            An Analytical Framework for Algorithmic Bias and Fairness Mitigation. 
+                            Helps identify and address bias in machine learning models.
+                        </p>
+                        <div class="project-features">
+                            <span class="feature">Bias Detection</span>
+                            <span class="feature">Fairness Metrics</span>
+                            <span class="feature">Mitigation Strategies</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Streamify Analytics Pipeline -->
+                <div class="project-card" data-category="data-engineering">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/Khalamander/streamify-analytics-pipeline" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-screenshot">
+                            <img src="screenshots/streamify-pipeline.png" alt="Streamify Analytics Pipeline Screenshot" class="screenshot-img">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Kafka</span>
+                            <span class="tag">Spark</span>
+                            <span class="tag">AWS</span>
+                        </div>
+                        <h3 class="project-title">Streamify Analytics Pipeline</h3>
+                        <p class="project-description">
+                            Real-time e-commerce analytics and fraud detection pipeline built with Kafka, 
+                            Spark, Airflow, and AWS for scalable data processing.
+                        </p>
+                        <div class="project-features">
+                            <span class="feature">Real-time Processing</span>
+                            <span class="feature">Fraud Detection</span>
+                            <span class="feature">Scalable Architecture</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergent Particle Life Simulation -->
+                <div class="project-card" data-category="simulation">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/Khalamander/emergent-particle-life-simulation" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#home" class="project-link">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-screenshot">
+                            <img src="screenshots/particle-life.png" alt="Emergent Particle Life Screenshot" class="screenshot-img">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Simulation</span>
+                            <span class="tag">Physics</span>
+                        </div>
+                        <h3 class="project-title">Emergent Particle Life</h3>
+                        <p class="project-description">
+                            Interactive particle life simulation exploring emergent behaviors and complex systems. 
+                            Built with TypeScript for web-based visualization.
+                        </p>
+                        <div class="project-features">
+                            <span class="feature">Interactive Simulation</span>
+                            <span class="feature">Emergent Behaviors</span>
+                            <span class="feature">Web-based Visualization</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="particle-demo/index.html" target="_blank" class="btn btn-primary project-demo-btn">
+                                <i class="fas fa-play"></i> Try Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Anvil Space -->
+                <div class="interactive-space">
+                    <canvas id="anvilCanvas"></canvas>
+                    <!-- Hammer Demo Description -->
+                    <div class="hammer-description-box">
+                        <p>more projects to come - in the mean time enjoy this quick thing i threw together (very buggy), try it swing the hammer at the anvil by holding left click on the handle and moving your mouse.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's collaborate and build something amazing together</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Get In Touch</h3>
+                        <p>Use the form to send me a message</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub</h3>
+                        <p>@Khalamander</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3>Education</h3>
+                        <p>McMaster University</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Khaled Alikhan. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="https://github.com/Khalamander" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Matter.js Physics Engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
