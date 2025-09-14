@@ -212,7 +212,7 @@ if (contactForm) {
             const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
             const backendUrl = isLocal 
                 ? 'http://localhost:3000/api/contact'
-                : 'https://khaled-portfolio-backend.herokuapp.com/api/contact';
+                : 'https://portfolio-backend-production.up.railway.app/api/contact';
             
             // Send to backend
             const response = await fetch(backendUrl, {
