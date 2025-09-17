@@ -1681,4 +1681,4 @@ html {
 .reset-btn:hover {
     background: var(--primary-hover);
     transform: translateY(-1px);
-}/* Force rebuild */
+}
