@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website showcasing my projects and skills as a Computer Science student at McMaster University.
 
-## 🚀 Features
+## Features
 
 - **Modern Design**: Clean, professional design with smooth animations
 - **Responsive**: Fully responsive design that works on all devices
@@ -11,7 +11,7 @@ A modern, responsive portfolio website showcasing my projects and skills as a Co
 - **Contact Form**: Functional contact form for inquiries
 - **Performance Optimized**: Fast loading times and smooth scrolling
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **HTML5**: Semantic markup structure
 - **CSS3**: Modern styling with CSS Grid and Flexbox
@@ -29,7 +29,7 @@ Portfolio/
 └── README.md           # Project documentation
 ```
 
-## 🎨 Design Features
+## Design Features
 
 ### Hero Section
 - Animated particle background
@@ -53,7 +53,7 @@ Portfolio/
 - Functional contact form
 - Social media links
 
-## 📱 Responsive Design
+## Responsive Design
 
 The portfolio is fully responsive and optimized for:
 - Desktop (1200px+)
@@ -62,11 +62,11 @@ The portfolio is fully responsive and optimized for:
 
 
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 🤝 Contributing
+## Contributing
 
 Feel free to fork this project and customize it for your own portfolio!
 
