@@ -2269,6 +2269,100 @@ function resetAnvil() {
     }
 }
 
+// --- Demo Switcher Logic ---
+document.addEventListener('DOMContentLoaded', function() {
+    const hammerDemo = document.getElementById('hammerDemo');
+    const blackholeDemo = document.getElementById('blackholeDemo');
+    const networkDemo = document.getElementById('networkDemo');
+    const fractalDemo = document.getElementById('fractalDemo');
+    const demoPrev = document.getElementById('demoPrev');
+    const demoNext = document.getElementById('demoNext');
+    const demoCount = 4;
+    let currentDemo = 0; // 0 = hammer, 1 = blackhole, 2 = network, 3 = fractal
+
+    function lazyLoadIframe(demoDiv, src, description) {
+        if (!demoDiv.querySelector('iframe')) {
+            const iframe = document.createElement('iframe');
+            iframe.src = src;
+            iframe.width = '392';
+            iframe.height = '400';
+            iframe.frameBorder = '0';
+            iframe.allowFullscreen = true;
+            iframe.style.borderRadius = '8px';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.background = '#000';
+            iframe.style.boxShadow = '0 2px 8px rgba(0,0,0,0.25)';
+            iframe.style.border = '2px solid var(--border-color)';
+            demoDiv.appendChild(iframe);
+            if (description) {
+                const descBox = document.createElement('div');
+                descBox.className = 'hammer-description-box';
+                descBox.style.marginTop = '16px';
+                descBox.innerHTML = `<p class='hammer-description'>${description}</p>`;
+                demoDiv.appendChild(descBox);
+            }
+        }
+    }
+
+    function showDemo(index) {
+        hammerDemo.style.display = 'none';
+        blackholeDemo.style.display = 'none';
+        networkDemo.style.display = 'none';
+        fractalDemo.style.display = 'none';
+
+        // Remove iframes from unselected widgets to free resources
+        if (index !== 1 && blackholeDemo.querySelector('iframe')) blackholeDemo.innerHTML = '';
+        if (index !== 2 && networkDemo.querySelector('iframe')) networkDemo.innerHTML = '';
+        if (index !== 3 && fractalDemo.querySelector('iframe')) fractalDemo.innerHTML = '';
+
+        if (index === 0) {
+            hammerDemo.style.display = 'block';
+        } else if (index === 1) {
+            blackholeDemo.style.display = 'block';
+            lazyLoadIframe(
+                blackholeDemo,
+                'widgets/blackhole.html',
+                'Interactive 3D black hole and accretion disk simulation using Three.js'
+            );
+        } else if (index === 2) {
+            networkDemo.style.display = 'block';
+            lazyLoadIframe(
+                networkDemo,
+                'widgets/network.html',
+                'Interactive network data flow visualization'
+            );
+        } else if (index === 3) {
+            fractalDemo.style.display = 'block';
+            lazyLoadIframe(
+                fractalDemo,
+                'widgets/fractal3d.html',
+                'Mesmerizing 3D tunnel'
+            );
+        }
+        currentDemo = index;
+    }
+
+    if (demoPrev && demoNext) {
+        demoPrev.addEventListener('click', function() {
+            showDemo((currentDemo - 1 + demoCount) % demoCount);
+        });
+        demoNext.addEventListener('click', function() {
+            showDemo((currentDemo + 1) % demoCount);
+        });
+    }
+
+    // Keyboard arrow navigation
+    document.addEventListener('keydown', function(e) {
+        if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
+        if (e.key === 'ArrowLeft') demoPrev && demoPrev.click();
+        if (e.key === 'ArrowRight') demoNext && demoNext.click();
+    });
+
+    // Initial state
+    showDemo(0);
+});
+
 // Add scroll-triggered animations for project cards
 function animateProjectCards() {
     const projectCards = document.querySelectorAll('.project-card');

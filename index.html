@@ -407,35 +407,54 @@
                     </div>
                 </div>
 
-                <!-- Interactive Anvil Space -->
+                <!-- Interactive Demo Switcher -->
                 <div class="interactive-space">
-                    <div class="anvil-demo-container">
-                        <canvas id="anvilCanvas"></canvas>
-                        <!-- Hammer Demo Description -->
-                        <div class="hammer-description-box">
-                            <p class="hammer-description">
-                                more projects to come - in the mean time enjoy this quick thing i threw together (very buggy), try it swing the hammer at the anvil by holding left click on the handle and moving your mouse.
-                            </p>
-                            <div class="hammer-controls">
-                                <div class="controls-header">
-                                    <h4>Customize the Demo:</h4>
-                                    <button id="resetDemo" class="reset-btn">Reset Demo</button>
+                    <div class="demo-switcher" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; position: relative;">
+                        <div id="demoContainer" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                            <button id="demoPrev" class="demo-arrow" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; background: var(--primary-color); color: #fff; border: none; border-radius: 50%; width: 48px; height: 48px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2;"><i class="fas fa-arrow-left"></i></button>
+                            <div style="flex: 1; display: flex; align-items: center; justify-content: center; min-width: 0; height: 100%;">
+                                <div id="hammerDemo" style="display: block; width: 392px; height: 400px;">
+                                 <div class="anvil-demo-container" style="width: 100%; height: 100%;">
+                                        <canvas id="anvilCanvas" style="width: 100%; height: 100%; max-width: 100%;"></canvas>
+                                        <div class="hammer-description-box">
+                                            <p class="hammer-description">
+                                                more projects to come - in the mean time enjoy these quick things i threw together, they are all very buggy. try it swing the hammer at the anvil by holding left click on the handle and moving your mouse. use the arrows to see what other widgets i made!
+                                            </p>
+                                            <div class="hammer-controls">
+                                                <div class="controls-header">
+                                                    <h4>Customize the Demo:</h4>
+                                                    <button id="resetDemo" class="reset-btn">Reset Demo</button>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label for="sparkColor">Spark Color:</label>
+                                                    <input type="color" id="sparkColor" value="#ff6b35" title="Choose spark color">
+                                                </div>
+                                                <div class="control-group">
+                                                    <label for="fadeTime">Fade Time:</label>
+                                                    <input type="range" id="fadeTime" min="500" max="3000" value="1500" step="100">
+                                                    <span id="fadeTimeValue">1500ms</span>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label for="trailLength">Trail Length:</label>
+                                                    <input type="range" id="trailLength" min="5" max="50" value="20" step="1">
+                                                    <span id="trailLengthValue">20</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="control-group">
-                                    <label for="sparkColor">Spark Color:</label>
-                                    <input type="color" id="sparkColor" value="#ff6b35" title="Choose spark color">
+                                <div id="blackholeDemo" style="display: none; width: 392px; height: 400px;">
+                                    <!-- Only load iframe if selected -->
                                 </div>
-                                <div class="control-group">
-                                    <label for="fadeTime">Fade Time:</label>
-                                    <input type="range" id="fadeTime" min="500" max="3000" value="1500" step="100">
-                                    <span id="fadeTimeValue">1500ms</span>
+                                <div id="networkDemo" style="display: none; width: 392px; height: 400px;">
+                                    <!-- Only load iframe if selected -->
                                 </div>
-                                <div class="control-group">
-                                    <label for="trailLength">Trail Length:</label>
-                                    <input type="range" id="trailLength" min="5" max="50" value="20" step="1">
-                                    <span id="trailLengthValue">20</span>
+                                <div id="fractalDemo" style="display: none; width: 392px; height: 400px;">
+                                    <!-- Only load iframe if selected -->
                                 </div>
                             </div>
+                            </div>
+                            <button id="demoNext" class="demo-arrow" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 2.5rem; background: var(--primary-color); color: #fff; border: none; border-radius: 50%; width: 48px; height: 48px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2;"><i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
